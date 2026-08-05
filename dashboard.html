@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="eyebrow amber">Welcome back</div>
+    <h1 style="font-size:clamp(30px,4vw,48px);text-transform:uppercase" id="dashGreeting">Hello, Contributor.</h1>
+    <p style="color:var(--dim);margin-top:8px;max-width:56ch">Choose what you want to work on today.</p>
+
+    <div class="dash-options">
+      <div class="card card-hover dash-opt" onclick="location.href='doubts.html'">
+        <div class="dash-opt-icon cyan" data-icon="mentor"></div>
+        <h3>I Need Doubt Clarification</h3>
+        <p>Ask about Physics, Maths, Engineering, Space Science, Programming or Electronics. Mentors answer.</p>
+        <span class="dash-opt-arrow">Ask a question →</span>
+      </div>
+      <div class="card card-hover dash-opt" onclick="location.href='build-choice.html'">
+        <div class="dash-opt-icon amber" data-icon="rocket"></div>
+        <h3>Build a Project</h3>
+        <p>Start solo or form a team. Get a full workspace: chat, files, tasks, timeline and more.</p>
+        <span class="dash-opt-arrow">Start building →</span>
+      </div>
+      <div class="card card-hover dash-opt" onclick="location.href='mentor-apply.html'">
+        <div class="dash-opt-icon green" data-icon="award"></div>
+        <h3>Become a Mentor</h3>
+        <p>Guide students, review projects, run webinars. You guide the mission — you never own it.</p>
+        <span class="dash-opt-arrow">Apply to mentor →</span>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="card" style="padding:var(--s6)">
+        <div class="sec-head" style="margin-bottom:var(--s4)"><h4 style="font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)">Your Projects</h4><span class="see-all" onclick="location.href='build-choice.html'">+ New</span></div>
+        <div id="dashMyProjects"></div>
+      </div>
+      <div class="console">
+        <div class="console-head"><span><span class="dot"></span> ANNOUNCEMENTS</span></div>
+        <div class="console-body" id="dashAnnouncements"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

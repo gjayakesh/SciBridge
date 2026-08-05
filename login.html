@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap auth-shell">
+    <div class="auth-card card" style="padding:var(--s7)">
+      <div class="auth-head">
+        <div class="eyebrow amber" style="justify-content:center">Access Console</div>
+        <h2>Log In</h2>
+        <p>Enter the workspace. Pick up where you left off.</p>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="field"><label>Email</label><input class="input" type="email" id="loginEmail" placeholder="you@example.com" required></div>
+        <div class="field"><label>Password</label><input class="input" type="password" id="loginPassword" placeholder="••••••••" required></div>
+        <button class="btn btn-primary btn-block" type="submit">Log In</button>
+      </form>
+      <div class="auth-demo-note">DEMO MODE — this preview has no real authentication yet. Any password works. Enter an email you registered to load that profile, or any other email to enter as a guest explorer.</div>
+      <div class="auth-foot">New to SciBridge? <a onclick="location.href='signup.html'">Create an account</a></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

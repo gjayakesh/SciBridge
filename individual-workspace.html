@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Individual Project — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="individual-workspace">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><div class="eyebrow amber">Solo Build</div><h2 id="indivTitle">Individual Project</h2></div>
+      <span class="badge-status draft" id="indivStatusBadge">draft</span>
+    </div>
+    <div class="workspace-grid">
+      <div>
+        <div class="card" style="padding:var(--s6);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Project Details</h4>
+          <div class="field"><label>Project Title</label><input class="input" id="indivProjTitle" placeholder="e.g. VitaOrbit — Bone Density Countermeasures"></div>
+          <div class="grid-2">
+            <div class="field"><label>Category</label><select class="select" id="indivProjCategory"></select></div>
+            <div class="field"><label>Required Skills (comma separated)</label><input class="input" id="indivProjSkills" placeholder="Data Analysis, Python"></div>
+          </div>
+          <div class="field"><label>Description</label><textarea class="textarea" id="indivProjDesc" placeholder="What are you building, and why?" style="min-height:110px"></textarea></div>
+          <button class="btn btn-outline" onclick="saveIndividualDraft()">Save Draft</button>
+        </div>
+
+        <div class="card" style="padding:var(--s6);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Documents &amp; Designs</h4>
+          <label class="file-drop">
+            <span class="ic" data-icon="upload" style="flex:none;width:24px;height:24px;color:var(--telemetry)"></span>
+            <div><div style="font-weight:600;font-size:13.5px">Upload documents or design files</div><div style="font-size:12px;color:var(--faint)">CAD, PDFs, diagrams, spec sheets</div></div>
+            <input type="file" multiple id="indivFiles" onchange="handleIndivFiles(this)">
+          </label>
+          <div class="file-list" id="indivFileList" style="margin-top:var(--s3)"></div>
+        </div>
+
+        <div class="card" style="padding:var(--s6)">
+          <h4 class="ws-label">Progress Updates</h4>
+          <div class="doubt-reply-form" style="margin-bottom:var(--s4)">
+            <input class="input" id="indivUpdateInput" placeholder="Post a progress update…">
+            <button class="btn btn-outline btn-sm" onclick="postIndivUpdate()">Post</button>
+          </div>
+          <div id="indivUpdatesList"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="console" style="margin-bottom:var(--s5)">
+          <div class="console-head"><span><span class="dot"></span> PROGRESS</span></div>
+          <div class="console-body">
+            <div class="field" style="margin-bottom:var(--s3)">
+              <label>Completion — <span id="indivProgressVal">0</span>%</label>
+              <input type="range" min="0" max="100" value="0" id="indivProgressSlider" oninput="updateIndivProgress(this.value)" style="width:100%">
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="indivProgressFill" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div class="card" style="padding:var(--s5);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Ask a Mentor</h4>
+          <textarea class="textarea" id="indivMentorNote" placeholder="Ask for advice on this project…" style="min-height:80px"></textarea>
+          <button class="btn btn-outline btn-block" style="margin-top:var(--s3)" onclick="askMentorAboutIndiv()">Send to Mentors</button>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="publishIndividualProject()">Publish Project</button>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/individual-workspace.js"></script>
+</body>
+</html>

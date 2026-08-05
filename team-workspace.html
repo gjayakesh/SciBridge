@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Workspace — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="team-workspace">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><div class="eyebrow amber" id="twCatEyebrow">Team Build</div><h2 id="twTitle">Team Project</h2></div>
+      <span class="badge-status draft" id="twStatusBadge">draft</span>
+    </div>
+    <div class="tw-grid">
+      <aside class="tw-sidebar">
+        <div class="card" style="padding:var(--s5);margin-bottom:var(--s4)">
+          <h4 class="ws-label">Project</h4>
+          <textarea class="textarea" id="twDesc" placeholder="Project description…" style="min-height:80px;margin-bottom:var(--s3)"></textarea>
+          <div id="twSkillsTags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s3)"></div>
+          <button class="btn btn-outline btn-sm btn-block" onclick="saveTeamDetails()">Save Details</button>
+        </div>
+        <div class="card" style="padding:var(--s5);margin-bottom:var(--s4)">
+          <h4 class="ws-label">Mentor</h4>
+          <div id="twMentorBox"></div>
+        </div>
+        <div class="card" style="padding:var(--s5);margin-bottom:var(--s4)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--s4)"><h4 class="ws-label" style="margin:0">Team Members</h4><span class="badge" id="twMemberCount">0</span></div>
+          <div id="twMembersList"></div>
+          <div style="display:flex;gap:6px;margin-top:var(--s3)">
+            <input class="input" id="twInviteInput" placeholder="Search name or email…" style="font-size:12px;padding:8px 10px">
+            <button class="btn btn-outline btn-sm" onclick="inviteToTeam()">Invite</button>
+          </div>
+          <div class="hint">Try "Rohan" or "Naledi" to invite a seeded user.</div>
+        </div>
+        <div class="card" id="twJoinRequests" style="padding:var(--s5);margin-bottom:var(--s4);display:none"></div>
+        <button class="btn btn-primary btn-block" onclick="publishTeamProject()">Publish Project</button>
+      </aside>
+
+      <div class="tw-main">
+        <div class="tw-tabs" id="twTabs"></div>
+        <div class="tw-panel card" id="twPanel"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/team-workspace.js"></script>
+</body>
+</html>

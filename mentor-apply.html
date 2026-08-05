@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Mentor — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="mentor-apply">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap auth-shell">
+    <div class="auth-card wide card" style="padding:var(--s7)">
+      <div class="auth-head">
+        <div class="eyebrow amber" style="justify-content:center">Guide, Don't Own</div>
+        <h2>Become a Mentor</h2>
+        <p>Mentors guide students, review projects and answer doubts. After admin approval, you're live.</p>
+      </div>
+      <div class="field"><label>Areas of Expertise (comma separated)</label><input class="input" id="mentorExpertise" placeholder="Robotics, Electronics, Programming"></div>
+      <div class="field"><label>Years of Experience</label><input class="input" type="number" min="0" id="mentorYears" placeholder="5"></div>
+      <div class="field"><label>Short Bio</label><textarea class="textarea" id="mentorBio" placeholder="Tell students what you can help with…" style="min-height:100px"></textarea></div>
+      <div class="field"><label>Credentials</label>
+        <label class="file-drop">
+          <span class="ic" data-icon="upload" style="flex:none;width:24px;height:24px;color:var(--telemetry)"></span>
+          <div><div style="font-weight:600;font-size:13.5px">Upload a credential or CV</div><div style="font-size:12px;color:var(--faint)">Degree, work history, publications</div></div>
+          <input type="file" id="mentorCredFile" onchange="handleMentorCredFile(this)">
+        </label>
+        <div class="file-list" id="mentorCredFileList"></div>
+      </div>
+      <button class="btn btn-primary btn-block" onclick="submitMentorApplication()">Submit Application</button>
+      <div id="mentorAppStatus"></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/mentor-apply.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SciBridge — Build the Thing That Gets Us Off-World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div class="hero-anim">
+        <div class="eyebrow amber">Mission Control · Student-Built</div>
+        <h1 id="heroTitle">BUILD THE<br>THING THAT GETS<br>US <span class="hl">OFF-WORLD.</span></h1>
+        <p class="lede" id="heroLede">SciBridge connects students, engineers, scientists and mentors to design, build and launch real space projects — together, from wherever they are.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="location.href='signup.html'">Get Started</button>
+          <button class="btn btn-outline" onclick="location.href='explore.html'">Explore Projects</button>
+        </div>
+        <div class="hero-strip">
+          <div class="item"><b>For</b>Students · Engineers · Researchers</div>
+          <div class="item"><b>Guided by</b>Verified mentors</div>
+          <div class="item"><b>Categories</b>11 mission domains</div>
+        </div>
+      </div>
+      <div class="console reveal">
+        <div class="console-head"><span><span class="dot"></span> SYSTEM STATUS</span><span id="consoleClock">00:00:00 UTC</span></div>
+        <div class="console-body" id="consoleStats">
+          <div class="console-row"><span class="label">ACTIVE PROJECTS</span><span class="value amber" data-count="0">00</span></div>
+          <div class="console-row"><span class="label">MENTORS ONLINE</span><span class="value cyan" data-count="0">00</span></div>
+          <div class="console-row"><span class="label">CONTRIBUTORS</span><span class="value" data-count="0">000</span></div>
+          <div class="console-row"><span class="label">MISSION CATEGORIES</span><span class="value" data-count="11">11</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-strip" id="homeCatStrip"></div>
+  </div>
+
+  <div class="wrap section" style="padding-top:var(--s7)">
+    <div class="mission-grid">
+      <div class="reveal">
+        <div class="eyebrow">The Mission</div>
+        <h2 style="font-size:clamp(28px,3.6vw,40px);text-transform:uppercase;max-width:12ch">Ideas don't fail from lack of talent. They fail alone.</h2>
+        <p style="color:var(--dim);margin-top:var(--s4);max-width:48ch">A student with a real idea shouldn't need to know the right people to get it built. SciBridge is the workspace, the team, and the mentorship, in one place — built so a project can go from a napkin sketch to something a university or space agency will actually look at.</p>
+      </div>
+      <div class="mission-list reveal reveal-d2">
+        <div class="mission-item"><span class="n">01</span><div><h4>Find or form a team</h4><p>Pair up with students, engineers and researchers across the world, or build solo with mentor support.</p></div></div>
+        <div class="mission-item"><span class="n">02</span><div><h4>Work in a real project workspace</h4><p>Chat, files, tasks, a progress tracker, meeting notes, a discussion board, calendar and timeline — all in one place.</p></div></div>
+        <div class="mission-item"><span class="n">03</span><div><h4>Get guided, not graded</h4><p>Mentors review your work, answer doubts and suggest resources. They guide the mission — they never own it.</p></div></div>
+        <div class="mission-item"><span class="n">04</span><div><h4>Publish and showcase</h4><p>Finished projects get a public page built to be shown to universities, labs and space organizations.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap section" style="padding-top:0">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow amber">Live from the workspace</div><h2>Featured Projects</h2></div>
+      <span class="see-all" onclick="location.href='explore.html'">View all projects →</span>
+    </div>
+    <div class="proj-grid" id="homeFeaturedProjects"></div>
+  </div>
+
+  <div class="wrap section" style="padding-top:0">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow">Signal received</div><h2>Success Stories</h2></div>
+    </div>
+    <div class="story-grid" id="homeStories"></div>
+  </div>
+
+  <div class="wrap section" style="padding-top:0;padding-bottom:var(--s9)">
+    <div class="sec-head reveal">
+      <div><div class="eyebrow amber">Countdown</div><h2>Upcoming Competitions &amp; Events</h2></div>
+    </div>
+    <div class="console reveal" id="homeEvents">
+      <div class="console-head"><span><span class="dot"></span> EVENT SCHEDULE</span><span>NEXT 90 DAYS</span></div>
+      <div class="console-body" id="homeEventsBody"></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

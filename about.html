@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section" style="padding-bottom:0">
+    <div class="eyebrow amber">About SciBridge</div>
+    <h1 style="font-size:clamp(32px,5vw,64px);text-transform:uppercase;max-width:16ch">Not a course. A launch pad.</h1>
+    <p style="color:var(--dim);max-width:60ch;margin-top:var(--s4);font-size:16px">SciBridge exists because the hardest part of a great space project was never the idea — it was finding the right two or three people, and someone who had done it before, willing to help.</p>
+  </div>
+  <div class="wrap" style="padding-bottom:var(--s9)">
+    <div class="about-grid">
+      <div class="card" style="padding:var(--s6)"><div class="dash-opt-icon amber" data-icon="rocket"></div><h4>Real Projects</h4><p>Every project on SciBridge is built to be shown to a university, a lab, or a space organization — not graded and forgotten.</p></div>
+      <div class="card" style="padding:var(--s6)"><div class="dash-opt-icon cyan" data-icon="mentor"></div><h4>Real Mentors</h4><p>Engineers, scientists and researchers guide projects after admin approval. They advise — they never take ownership.</p></div>
+      <div class="card" style="padding:var(--s6)"><div class="dash-opt-icon green" data-icon="users"></div><h4>Real Teams</h4><p>Students, engineers and researchers from anywhere in the world, working in one shared workspace.</p></div>
+    </div>
+    <div class="console" style="margin-top:var(--s7)">
+      <div class="console-head"><span><span class="dot"></span> MISSION CATEGORIES</span></div>
+      <div class="console-body" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)" id="aboutCategories"></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/about.js"></script>
+</body>
+</html>

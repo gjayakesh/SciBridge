@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start or Join a Team — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="team-setup">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><div class="eyebrow amber">Team Build</div><h2>Start or Join a Team</h2></div>
+    </div>
+    <div class="team-setup-grid">
+      <div class="card" style="padding:var(--s6)">
+        <h4 class="ws-label">Create a New Team Project</h4>
+        <div class="field"><label>Project Title</label><input class="input" id="teamProjTitle" placeholder="e.g. Athena-2 CubeSat"></div>
+        <div class="grid-2">
+          <div class="field"><label>Category</label><select class="select" id="teamProjCategory"></select></div>
+          <div class="field"><label>Required Skills (comma separated)</label><input class="input" id="teamProjSkills" placeholder="RF Systems, Embedded C"></div>
+        </div>
+        <div class="field"><label>Description</label><textarea class="textarea" id="teamProjDesc" placeholder="What's the mission? What are you building?" style="min-height:100px"></textarea></div>
+        <button class="btn btn-primary btn-block" onclick="createTeamProject()">Create Team &amp; Open Workspace</button>
+      </div>
+      <div>
+        <h4 class="ws-label">Or Join a Team Looking for Members</h4>
+        <div id="openTeamsList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/team-setup.js"></script>
+</body>
+</html>
