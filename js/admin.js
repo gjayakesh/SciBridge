@@ -35,14 +35,22 @@ function renderAdminOverview(){
 
 /* ---------- USERS ---------- */
 function renderAdminUsers(){
-  return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--s4);flex-wrap:wrap;gap:var(--s3)"><h4 class="ws-label" style="margin:0">All Registered Users ('+DB.users.length+')</h4><input class="input" id="adminUserSearch" placeholder="Search users…" style="width:220px;font-size:12.5px;padding:8px 10px" oninput="filterAdminUsersTable()"></div><div style="overflow-x:auto"><table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Country</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="adminUsersTbody"></tbody></table></div><div class="auth-demo-note" style="margin-top:var(--s5)">This table reads directly from SciBridge\'s shared user directory — every account created in this preview appears here, exactly as a real admin CMS would show it.</div>';
+  return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--s4);flex-wrap:wrap;gap:var(--s3)">' +
+    '<div style="display:flex;align-items:center;gap:var(--s3)">' +
+      '<h4 class="ws-label" style="margin:0">All Registered Users ('+DB.users.length+')</h4>' +
+      '<button class="btn btn-primary btn-sm" onclick="openAddUserModal()">+ Add User</button>' +
+    '</div>' +
+    '<input class="input" id="adminUserSearch" placeholder="Search users…" style="width:220px;font-size:12.5px;padding:8px 10px" oninput="filterAdminUsersTable()">' +
+  '</div>' +
+  '<div style="overflow-x:auto"><table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Mobile</th><th>Country</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="adminUsersTbody"></tbody></table></div>' +
+  '<div class="auth-demo-note" style="margin-top:var(--s5)">This table reads directly from SciBridge\'s shared user directory — every account created in this preview appears here, exactly as a real admin CMS would show it.</div>';
 }
 function filterAdminUsersTable(){
   const searchEl=document.getElementById('adminUserSearch');
   const q=(searchEl&&searchEl.value||'').toLowerCase();
   const filtered=DB.users.filter(function(u){return !q||u.name.toLowerCase().indexOf(q)>-1||u.email.toLowerCase().indexOf(q)>-1});
   document.getElementById('adminUsersTbody').innerHTML=filtered.map(function(u){
-    return '<tr><td>'+u.name+'</td><td>'+u.email+'</td><td>'+(u.mobile||'—')+'</td><td>'+(u.country||'—')+'</td><td><span class="badge-status '+(u.role==='mentor'?'approved':'open')+'">'+u.role+'</span></td><td><span class="badge-status '+u.status+'">'+u.status+'</span></td><td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="toggleUserStatus(\''+u.id+'\')">'+(u.status==='active'?'Suspend':'Activate')+'</button> <button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="removeUser(\''+u.id+'\')">Remove</button></td></tr>';
+    return '<tr><td>'+u.name+'</td><td>'+u.email+'</td><td>'+(u.mobile||'—')+'</td><td>'+(u.country||'—')+'</td><td><span class="badge-status '+(u.role==='mentor'?'approved':'open')+'">'+u.role+'</span></td><td><span class="badge-status '+u.status+'">'+u.status+'</span></td><td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="toggleUserStatus(\''+u.id+'\')">'+(u.status==='active'?'Suspend':'Activate')+'</button> <button class="btn btn-ghost btn-sm" onclick="openChangePasswordModal(\''+u.id+'\')">Password</button> <button class="btn btn-ghost btn-sm" style="color:var(--danger)" onclick="removeUser(\''+u.id+'\')">Remove</button></td></tr>';
   }).join('')||'<tr><td colspan="7" style="text-align:center;color:var(--faint);padding:var(--s6)">No users match.</td></tr>';
 }
 async function toggleUserStatus(id){
@@ -57,6 +65,148 @@ async function removeUser(id){
   await saveCollection('scibridge_users',DB.users);
   toast('User removed');
   renderAdminPanel();
+}
+
+/* ---------- ADMIN MODALS ---------- */
+function getOrCreateModalContainer() {
+  let modalContainer = document.getElementById('admin-modal-container');
+  if (!modalContainer) {
+    modalContainer = document.createElement('div');
+    modalContainer.id = 'admin-modal-container';
+    modalContainer.className = 'modal-overlay';
+    document.body.appendChild(modalContainer);
+  }
+  return modalContainer;
+}
+
+function closeModal() {
+  const container = document.getElementById('admin-modal-container');
+  if (container) {
+    container.classList.remove('active');
+    container.innerHTML = '';
+  }
+}
+
+function openAddUserModal() {
+  const container = getOrCreateModalContainer();
+  container.innerHTML = `
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Create New User</h3>
+        <button class="close-modal-btn" onclick="closeModal()">${ICONS.close}</button>
+      </div>
+      <form id="addUserForm" onsubmit="handleAddUserSubmit(event)">
+        <div class="modal-body">
+          <div class="field">
+            <label>Full Name</label>
+            <input class="input" id="newUserName" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input class="input" type="email" id="newUserEmail" placeholder="jane@example.com" required>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label>Password</label>
+              <input class="input" type="password" id="newUserPassword" placeholder="••••••••" required>
+            </div>
+            <div class="field">
+              <label>Mobile</label>
+              <input class="input" id="newUserMobile" placeholder="+1 555 0199">
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label>Role</label>
+              <select class="select" id="newUserRole">
+                <option value="student">Student</option>
+                <option value="mentor">Mentor</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Country</label>
+              <input class="input" id="newUserCountry" placeholder="United States">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" type="button" onclick="closeModal()">Cancel</button>
+          <button class="btn btn-primary" type="submit">Create User</button>
+        </div>
+      </form>
+    </div>
+  `;
+  container.classList.add('active');
+  hydrateIcons(container);
+}
+
+async function handleAddUserSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('newUserEmail').value.trim();
+  if (DB.users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+    toast('A user with this email already exists', 'err');
+    return;
+  }
+  const newUser = {
+    id: uid('u'),
+    name: document.getElementById('newUserName').value.trim(),
+    email: email,
+    mobile: document.getElementById('newUserMobile').value.trim(),
+    password: document.getElementById('newUserPassword').value,
+    country: document.getElementById('newUserCountry').value.trim(),
+    role: document.getElementById('newUserRole').value,
+    status: 'active',
+    skills: [],
+    interests: [],
+    joinedAt: new Date().toISOString().slice(0, 10)
+  };
+  DB.users.push(newUser);
+  await saveCollection('scibridge_users', DB.users);
+  toast('User ' + newUser.name + ' created successfully');
+  closeModal();
+  renderAdminPanel();
+}
+
+function openChangePasswordModal(userId) {
+  const user = userById(userId);
+  if (!user) return;
+  const container = getOrCreateModalContainer();
+  container.innerHTML = `
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Change Password</h3>
+        <button class="close-modal-btn" onclick="closeModal()">${ICONS.close}</button>
+      </div>
+      <form id="changePasswordForm" onsubmit="handleChangePasswordSubmit(event, '${userId}')">
+        <div class="modal-body">
+          <p style="font-size: 14px; margin-bottom: var(--s4); color: var(--dim)">
+            Update password for <strong>${user.name}</strong> (${user.email}).
+          </p>
+          <div class="field">
+            <label>New Password</label>
+            <input class="input" type="password" id="changeUserPassword" placeholder="••••••••" required minlength="4">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" type="button" onclick="closeModal()">Cancel</button>
+          <button class="btn btn-primary" type="submit">Update Password</button>
+        </div>
+      </form>
+    </div>
+  `;
+  container.classList.add('active');
+  hydrateIcons(container);
+}
+
+async function handleChangePasswordSubmit(e, userId) {
+  e.preventDefault();
+  const user = userById(userId);
+  if (!user) return;
+  const newPw = document.getElementById('changeUserPassword').value;
+  user.password = newPw;
+  await saveCollection('scibridge_users', DB.users);
+  toast('Password updated for ' + user.name);
+  closeModal();
 }
 
 /* ---------- MENTOR APPLICATIONS ---------- */

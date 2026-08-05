@@ -95,6 +95,7 @@ async function submitSignup(){
     name:document.getElementById('suName').value.trim(),
     email:document.getElementById('suEmail').value.trim(),
     mobile:document.getElementById('suMobile').value.trim(),
+    password:document.getElementById('suPassword').value,
     country:document.getElementById('suCountry').value.trim(),
     state:document.getElementById('suState').value.trim(),
     education:document.getElementById('suEducation').value,
