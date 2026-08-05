@@ -25,13 +25,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare Pages source
+        # Copy only the site files into ./site to avoid uploading workflow/config files
+        run: |
+          rm -rf site
+          mkdir site
+          # If you have a build step, run it before this (see notes below).
+          rsync -av --exclude='.git' --exclude='.github' --exclude='.vscode' --exclude='node_modules' --exclude='**/*.yml' --exclude='**/*.yaml' ./ site/
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ./site
 
       - name: Deploy to GitHub Pages
         id: deployment
