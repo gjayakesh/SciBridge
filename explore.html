@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Projects — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="explore">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="eyebrow amber">Live from the workspace</div>
+    <h1 style="font-size:clamp(30px,4.4vw,52px);text-transform:uppercase">Explore Projects</h1>
+    <p style="color:var(--dim);margin-top:8px;max-width:56ch">Every published mission on SciBridge — filter by category or search by skill.</p>
+    <div class="explore-controls">
+      <div class="field" style="margin-bottom:0"><input class="input" id="exploreSearch" placeholder="Search by title, skill, or category…" oninput="renderExploreGrid()"></div>
+    </div>
+    <div class="cat-strip" id="exploreCatStrip"></div>
+    <div class="proj-grid" id="exploreGrid" style="margin-top:var(--s6)"></div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/explore.js"></script>
+</body>
+</html>

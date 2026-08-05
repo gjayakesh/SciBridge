@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="signup">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap auth-shell">
+    <div class="auth-card wide card" style="padding:var(--s7)">
+      <div class="auth-head">
+        <div class="eyebrow amber" style="justify-content:center">New Contributor</div>
+        <h2>Create Your Account</h2>
+        <p>Five short steps — about two minutes.</p>
+      </div>
+      <div class="steps">
+        <div class="step-bar" id="stepBar1"><i></i></div>
+        <div class="step-bar" id="stepBar2"><i></i></div>
+        <div class="step-bar" id="stepBar3"><i></i></div>
+        <div class="step-bar" id="stepBar4"><i></i></div>
+        <div class="step-bar" id="stepBar5"><i></i></div>
+      </div>
+      <div class="step-labels">
+        <span id="stepLabel1">01 Account</span>
+        <span id="stepLabel2">02 Background</span>
+        <span id="stepLabel3">03 Skills</span>
+        <span id="stepLabel4">04 Documents</span>
+        <span id="stepLabel5">05 Review</span>
+      </div>
+
+      <form id="signupForm" onsubmit="return false">
+        <div class="wizard-step active" data-step="1">
+          <div class="field"><label>Full Name</label><input class="input" id="suName" placeholder="Ava Thornton" required></div>
+          <div class="grid-2">
+            <div class="field"><label>Email</label><input class="input" type="email" id="suEmail" placeholder="you@example.com" required></div>
+            <div class="field"><label>Mobile Number</label><input class="input" id="suMobile" placeholder="+1 555 000 0000" required></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Password</label><input class="input" type="password" id="suPassword" placeholder="••••••••" required></div>
+            <div class="field"><label>Confirm Password</label><input class="input" type="password" id="suPassword2" placeholder="••••••••" required></div>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="2">
+          <div class="grid-2">
+            <div class="field"><label>Country</label><input class="input" id="suCountry" placeholder="India"></div>
+            <div class="field"><label>State</label><input class="input" id="suState" placeholder="Telangana"></div>
+          </div>
+          <div class="field"><label>Highest Education</label>
+            <select class="select" id="suEducation">
+              <option>High School</option><option>Bachelor's Degree</option><option selected>Master's Degree</option><option>PhD Candidate</option><option>PhD</option><option>Other</option>
+            </select>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Institution</label><input class="input" id="suInstitution" placeholder="Your school or university"></div>
+            <div class="field"><label>Field of Study</label><input class="input" id="suField" placeholder="Aerospace Engineering"></div>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="3">
+          <div class="field"><label>Skills</label>
+            <div class="chip-input" id="skillsChipBox"><input id="skillsInput" placeholder="Type a skill, press Enter"></div>
+            <div class="hint">e.g. CAD, Python, Structural Analysis, ROS</div>
+          </div>
+          <div class="field"><label>Interests</label>
+            <div class="chip-input" id="interestsChipBox"><input id="interestsInput" placeholder="Type an interest, press Enter"></div>
+            <div class="hint">e.g. Rockets, AI, Mars Missions</div>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="4">
+          <div class="field"><label>Resume</label>
+            <label class="file-drop">
+              <span class="ic" data-icon="upload" style="flex:none;width:26px;height:26px;color:var(--telemetry)"></span>
+              <div><div style="font-weight:600;font-size:13.5px">Upload your resume</div><div style="font-size:12px;color:var(--faint)">PDF or DOCX</div></div>
+              <input type="file" id="suResume" accept=".pdf,.doc,.docx" onchange="handleFileSelect(this,'resumeFileName')">
+            </label>
+            <div class="file-list" id="resumeFileList"></div>
+          </div>
+          <div class="field"><label>Educational Certificates</label>
+            <label class="file-drop">
+              <span class="ic" data-icon="upload" style="flex:none;width:26px;height:26px;color:var(--telemetry)"></span>
+              <div><div style="font-weight:600;font-size:13.5px">Upload certificates</div><div style="font-size:12px;color:var(--faint)">Highest qualification + any relevant certificates</div></div>
+              <input type="file" id="suCerts" accept=".pdf,.jpg,.png" multiple onchange="handleFileSelect(this,'certFileNames',true)">
+            </label>
+            <div class="file-list" id="certsFileList"></div>
+          </div>
+          <div class="auth-demo-note">Files stay on your device in this preview — no file storage is connected yet, so only the file name is recorded.</div>
+        </div>
+
+        <div class="wizard-step" data-step="5">
+          <div id="reviewBox"></div>
+          <div class="auth-demo-note">Creating an account adds you to SciBridge's shared demo directory, visible in the admin panel to anyone testing this preview. Please don't enter real personal details here.</div>
+        </div>
+
+        <div class="wizard-nav">
+          <button type="button" class="btn btn-ghost" id="suBackBtn" onclick="wizardBack()" style="visibility:hidden">← Back</button>
+          <button type="button" class="btn btn-primary" id="suNextBtn" onclick="wizardNext()">Continue →</button>
+        </div>
+      </form>
+      <div class="auth-foot">Already have an account? <a onclick="location.href='login.html'">Log in</a></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>

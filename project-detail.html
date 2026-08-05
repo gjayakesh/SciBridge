@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="project-detail">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="reveal">
+      <div style="display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s3);flex-wrap:wrap"><div id="pdCat"></div><span class="badge-status" id="pdStatusBadge"></span></div>
+      <h1 id="pdTitle" style="font-size:clamp(28px,4vw,48px);text-transform:uppercase;max-width:22ch"></h1>
+      <p id="pdDesc" style="color:var(--dim);max-width:62ch;margin-top:var(--s3)"></p>
+      <div style="display:flex;gap:var(--s3);margin-top:var(--s5);flex-wrap:wrap" id="pdActions"></div>
+    </div>
+
+    <div class="pd-grid">
+      <div>
+        <div class="card" style="padding:var(--s6);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Media</h4>
+          <div class="pd-media-grid" id="pdMedia"></div>
+        </div>
+        <div class="card" style="padding:var(--s6);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Documents</h4>
+          <div id="pdDocs"></div>
+        </div>
+        <div class="card" style="padding:var(--s6);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Updates</h4>
+          <div id="pdUpdates"></div>
+        </div>
+        <div class="card" style="padding:var(--s6)">
+          <h4 class="ws-label">Comments</h4>
+          <div class="doubt-reply-form" style="margin-bottom:var(--s4)"><input class="input" id="pdCommentInput" placeholder="Share your thoughts or suggestions…"><button class="btn btn-outline btn-sm" onclick="addProjectComment()">Post</button></div>
+          <div id="pdComments"></div>
+        </div>
+      </div>
+      <div>
+        <div class="console" style="margin-bottom:var(--s5)">
+          <div class="console-head"><span><span class="dot"></span> PROGRESS</span></div>
+          <div class="console-body"><div class="progress-bar" style="margin-bottom:8px"><div class="progress-fill" id="pdProgressFill" style="width:0%"></div></div><div style="text-align:right;font-family:var(--font-mono);font-size:12px;color:var(--dim)" id="pdProgressLabel">0%</div></div>
+        </div>
+        <div class="card" style="padding:var(--s5);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Team</h4>
+          <div id="pdTeam"></div>
+        </div>
+        <div class="card" style="padding:var(--s5);margin-bottom:var(--s5)">
+          <h4 class="ws-label">Mentor</h4>
+          <div id="pdMentor"></div>
+        </div>
+        <div class="card" style="padding:var(--s5)">
+          <h4 class="ws-label">Required Skills</h4>
+          <div id="pdSkills" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/project-detail.js"></script>
+</body>
+</html>

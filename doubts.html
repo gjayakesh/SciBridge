@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doubt Clarification — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="doubts">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><div class="eyebrow">Ask &amp; Answer</div><h2>Doubt Clarification</h2></div>
+    </div>
+    <div class="doubts-grid">
+      <div>
+        <div class="card" style="padding:var(--s6);margin-bottom:var(--s5)">
+          <h4 style="font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:var(--s4)">Ask a Question</h4>
+          <div class="field"><label>Subject</label>
+            <select class="select" id="doubtSubject">
+              <option>Physics</option><option>Mathematics</option><option>Engineering</option><option>Space Science</option><option>Programming</option><option>Electronics</option>
+            </select>
+          </div>
+          <div class="field"><label>Your Question</label><textarea class="textarea" id="doubtQuestion" placeholder="Describe what you're stuck on…"></textarea></div>
+          <div class="field">
+            <label class="file-drop" style="padding:var(--s4)">
+              <span class="ic" data-icon="upload" style="flex:none;width:20px;height:20px;color:var(--telemetry)"></span>
+              <div style="font-size:12.5px;color:var(--dim)">Attach text, an image, or a PDF (optional)</div>
+              <input type="file" id="doubtAttachment" onchange="handleDoubtAttachment(this)">
+            </label>
+            <div id="doubtAttachmentName" class="file-list"></div>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="submitDoubt()">Post Question</button>
+        </div>
+        <div class="cat-strip" id="doubtFilterStrip" style="border:none;padding:0"></div>
+      </div>
+      <div id="doubtsList"></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/doubts.js"></script>
+</body>
+</html>

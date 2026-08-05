@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build a Project — SciBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="build-choice">
+
+<div id="loader"><div class="loader-ring"></div><div class="lt">Establishing link…</div></div>
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<nav id="navbar"></nav>
+
+<div id="app">
+<section class="page">
+
+  <div class="wrap section">
+    <div class="eyebrow amber">Build a Project</div>
+    <h1 style="font-size:clamp(30px,4.4vw,52px);text-transform:uppercase;max-width:18ch">How do you want to build?</h1>
+    <p style="color:var(--dim);margin-top:8px;max-width:56ch">Either path gets you a real workspace and mentor access. You can always invite people to a solo project later.</p>
+    <div class="choice-grid">
+      <div class="card card-hover choice-card" onclick="startIndividualProject()">
+        <div class="dash-opt-icon amber" data-icon="rocket" style="width:52px;height:52px"></div>
+        <h3>Individual Project</h3>
+        <p>Build alone, at your own pace. Upload documents and designs, ask mentors for advice, publish when ready.</p>
+        <ul class="choice-list">
+          <li><span class="ic" data-icon="check"></span> Full control, your pace</li>
+          <li><span class="ic" data-icon="check"></span> Mentor advice on request</li>
+          <li><span class="ic" data-icon="check"></span> Publish to your profile</li>
+        </ul>
+        <span class="btn btn-outline btn-block">Start Solo →</span>
+      </div>
+      <div class="card card-hover choice-card" onclick="location.href='team-setup.html'">
+        <div class="dash-opt-icon cyan" data-icon="users" style="width:52px;height:52px"></div>
+        <h3>Team Project</h3>
+        <p>Create a team, invite students, engineers, researchers and mentors. Get a shared workspace built for collaboration.</p>
+        <ul class="choice-list">
+          <li><span class="ic" data-icon="check"></span> Invite &amp; accept teammates</li>
+          <li><span class="ic" data-icon="check"></span> Full team workspace</li>
+          <li><span class="ic" data-icon="check"></span> Assign a mentor</li>
+        </ul>
+        <span class="btn btn-primary btn-block">Start a Team →</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer id="site-footer"></footer>
+<div id="toast-container"></div>
+
+<script src="js/shared.js"></script>
+<script src="js/build-choice.js"></script>
+</body>
+</html>
